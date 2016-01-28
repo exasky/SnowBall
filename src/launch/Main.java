@@ -1,7 +1,13 @@
+package launch;
+import ihm.GamePanel;
+import ihm.ScorePanel;
+
+import java.awt.BorderLayout;
 import java.awt.Rectangle;
 
 import javax.swing.JFrame;
 
+import controller.GameController;
 
 public class Main extends JFrame{
 	
@@ -10,10 +16,20 @@ public class Main extends JFrame{
 	public static final int Y_BOUND=300;
 	
 	public Main(){
-		add(new MainPanel());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Rectangle bounds = getBounds();
 		setBounds(bounds.x, bounds.y, X_BOUND, Y_BOUND);
+		
+		add(new GamePanel());
+		
+		ScorePanel scorePanel = new ScorePanel();
+		scorePanel.resetGame();
+		scorePanel.setVisible(true);
+		add(scorePanel,BorderLayout.SOUTH);
+		
+		GameController.addObserver(scorePanel);
+		GameController.resetGame();
+		
 		setVisible(true);
 	}
 	
