@@ -1,9 +1,9 @@
-package model.powers;
+package model.powers.impl;
 
 import java.awt.Color;
 
+import model.powers.Power;
 import controller.GameController;
-import model.Power;
 
 public class ExtraLifePower extends Power {
 

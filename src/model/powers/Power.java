@@ -1,4 +1,4 @@
-package model;
+package model.powers;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -35,5 +35,10 @@ public abstract class Power {
 		if (obj == null || !(obj instanceof Power))
 			return false;
 		return ((Power)obj).getPowerName().equals(this.powerName);
+	}
+	
+	@Override
+	public String toString() {
+		return "POWER: name " + this.powerName;
 	}
 }

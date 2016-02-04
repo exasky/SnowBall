@@ -14,6 +14,7 @@ import java.util.Observable;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+import model.ball.SnowBall;
 import controller.GameController;
 import controller.PowerController;
 
@@ -41,7 +42,7 @@ public class Game extends Observable {
 				Iterator<SnowBall> ballsIterator = snowBallList.iterator();
 				while (ballsIterator.hasNext()) {
 					SnowBall ball = ballsIterator.next();
-					GameController.snowBallController.nextPos(ball, gamePanel.getWidth() - ballWidth);
+					GameController.snowBallController.nextPos(ball, gamePanel.getWidth() - Game.this.ballWidth);
 					if (ball.y > gamePanel.getHeight()) {
 						ball.y = 0;
 						GameController.addPoint();

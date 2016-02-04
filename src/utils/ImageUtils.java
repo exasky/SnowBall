@@ -5,13 +5,13 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
-import model.Power;
+import model.powers.Power;
 
 public class ImageUtils {
 	
 	public static void createNewBallImage(){
 		try {
-			BufferedImage image = ImageIO.read(Power.class.getResource("/Snowball.png"));
+			BufferedImage image = ImageIO.read(Power.class.getResource("/Snowball.png.orig"));
 			
 			for (int xx = 0; xx < image.getWidth(); xx++) {
 	            for (int yy = 0; yy < image.getHeight(); yy++) {

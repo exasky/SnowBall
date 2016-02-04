@@ -1,11 +1,20 @@
 package model;
 
-import java.util.Observable;
+
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.Timer;
+
+import model.powers.PowerList;
 
 public class Player extends Observable{
 	
 	private int score;
 	private int lifes;
+	
+	private Timer killTimer;
 	
 	private boolean isInvincible;
 	
@@ -16,6 +25,12 @@ public class Player extends Observable{
 		this.lifes = 1;
 		this.isInvincible = false;
 		this.powerList = new PowerList();
+		this.killTimer = new Timer(500, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				Player.this.isInvincible = false;
+			}
+		});
 	}
 	
 	public void addPoint(){
@@ -40,6 +55,8 @@ public class Player extends Observable{
 	
 	public void kill(){
 		if (this.isInvincible) return;
+		this.isInvincible = true;
+		this.killTimer.start();
 		this.lifes--;
 		sendNotification("Lifes: " + this.lifes);
 	}
@@ -59,10 +76,5 @@ public class Player extends Observable{
 	
 	public void setInvincible(boolean isInvincible){
 		this.isInvincible = isInvincible;
-	}
-	
-	private void sendNotification(Object arg){
-		setChanged();
-		notifyObservers(arg);
 	}
 }

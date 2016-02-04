@@ -1,7 +1,8 @@
-package model;
+package model.ball;
 import javax.swing.JPanel;
 
-import model.powers.NonePower;
+import model.powers.Power;
+import model.powers.impl.NonePower;
 
 public class SnowBall extends JPanel{
 	private static final long serialVersionUID = 1L;
@@ -36,7 +37,7 @@ public class SnowBall extends JPanel{
 	}
 	
 	public void setX(int newX, int maxWidth){
-		currentDirection = (newX < this.x) ? Direction.LEFT : Direction.RIGHT;		
+		this.currentDirection = (newX < this.x) ? Direction.LEFT : Direction.RIGHT;		
 		this.x = newX;
 		
 		if (this.x < 1) {

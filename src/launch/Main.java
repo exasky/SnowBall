@@ -1,5 +1,6 @@
 package launch;
 import ihm.GamePanel;
+import ihm.PowerPanel;
 import ihm.ScorePanel;
 
 import java.awt.BorderLayout;
@@ -27,7 +28,11 @@ public class Main extends JFrame{
 		scorePanel.setVisible(true);
 		add(scorePanel,BorderLayout.SOUTH);
 		
+		PowerPanel powerPanel = new PowerPanel();
+		add(powerPanel, BorderLayout.NORTH);
+		
 		GameController.addObserver(scorePanel);
+		GameController.addObserver(powerPanel);
 		GameController.resetGame();
 		
 		setVisible(true);

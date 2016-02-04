@@ -1,4 +1,5 @@
 package ihm;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.MouseAdapter;
@@ -9,14 +10,16 @@ import java.awt.event.MouseWheelListener;
 
 import javax.swing.JPanel;
 
+import model.ball.SnowBall;
+import model.powers.Power;
 import controller.GameController;
-import model.Power;
-import model.SnowBall;
+import controller.PowerController;
 
 public class GamePanel extends JPanel{
 	private static final long serialVersionUID = 1L;
 
 	public GamePanel(){
+		setLayout(new BorderLayout());
 		setBackground(Color.BLACK);
 		
 		addMouseMotionListener(new MouseMotionAdapter() {
@@ -45,10 +48,7 @@ public class GamePanel extends JPanel{
 		addMouseWheelListener(new MouseWheelListener() {
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				if (e.getWheelRotation() == 1)	//Wheel down
-					GameController.getPlayer().getPowerList().switchToNextPower();
-				else							//Wheel up
-					GameController.getPlayer().getPowerList().switchToPreviousPower();
+				PowerController.switchPower(e.getWheelRotation());
 			}
 		});
 		

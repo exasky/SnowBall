@@ -3,12 +3,13 @@ package controller;
 import java.util.Random;
 
 import launch.Main;
-import model.Direction;
-import model.Power;
-import model.SnowBall;
-import model.powers.ExtraLifePower;
-import model.powers.NonePower;
-import model.powers.ShieldPower;
+import model.ball.Direction;
+import model.ball.SnowBall;
+import model.powers.Power;
+import model.powers.impl.DummyPower;
+import model.powers.impl.ExtraLifePower;
+import model.powers.impl.NonePower;
+import model.powers.impl.ShieldPower;
 
 public class SnowBallController {
 	
@@ -58,6 +59,8 @@ public class SnowBallController {
 	
 	private Power getRandPower(){
 		switch (myRand.nextInt(10)) {
+			case 7:
+				return new DummyPower();
 			case 8:
 				return new ShieldPower();
 			case 9:

@@ -1,8 +1,8 @@
-package model.powers;
+package model.powers.impl;
 
 import java.awt.Color;
 
-import model.Power;
+import model.powers.Power;
 
 public class NonePower extends Power {
 

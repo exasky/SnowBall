@@ -1,15 +1,17 @@
 package controller;
 
+import ihm.PowerPanel;
 import ihm.ScorePanel;
 
 import java.awt.Point;
 import java.util.List;
+import java.util.Observer;
 
 import javax.swing.JPanel;
 
 import model.Game;
 import model.Player;
-import model.SnowBall;
+import model.ball.SnowBall;
 
 public class GameController {
 
@@ -69,8 +71,12 @@ public class GameController {
 		return mainPanel;
 	}
 
-	public static void addObserver(ScorePanel scorePanel) {
-		player.addObserver(scorePanel);
-		game.addObserver(scorePanel);
+	public static void addObserver(Observer observer) {
+		if (observer instanceof ScorePanel){
+			player.addObserver(observer);
+			game.addObserver(observer);
+		}
+		if (observer instanceof PowerPanel)
+			player.getPowerList().addObserver(observer);
 	}
 }
