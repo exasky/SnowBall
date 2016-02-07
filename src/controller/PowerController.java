@@ -9,10 +9,14 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
+import model.powers.PowerList;
+
 public class PowerController {
 	
 	private static Map<Color, BufferedImage> actionlessBallImageMap;
 	private static Map<Color, BufferedImage> poweredBallImageMap;
+	
+	public static PowerList powerList;
 	
 	static {
 		actionlessBallImageMap = new HashMap<Color, BufferedImage>();
@@ -27,6 +31,8 @@ public class PowerController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		powerList = GameController.getPlayer().getPowerList();
 	}
 
 	public static BufferedImage getBallImage(Color ballColor){
@@ -39,8 +45,12 @@ public class PowerController {
 	
 	public static void switchPower(int wheelRotation){
 		if (wheelRotation == 1)	//Wheel down
-			GameController.getPlayer().getPowerList().switchToNextPower();
+			powerList.switchToNextPower();
 		else					//Wheel up
-			GameController.getPlayer().getPowerList().switchToPreviousPower();
+			powerList.switchToPreviousPower();
+	}
+
+	public static void resetPower() {
+		powerList.reset();
 	}
 }

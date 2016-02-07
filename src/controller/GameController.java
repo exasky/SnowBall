@@ -54,6 +54,7 @@ public class GameController {
 	public static void resetGame() {
 		player.resetPlayer();
 		game.resetGame();
+		PowerController.resetPower();
 	}
 	
 	/**

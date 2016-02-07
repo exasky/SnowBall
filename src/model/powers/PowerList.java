@@ -34,6 +34,10 @@ public class PowerList extends Observable{
 			this.powerList.add(power);
 		}
 		
+		if (this.powerCounts.get(this.getCurrentPower().getPowerName()) == 0){
+			switchToNextPower();
+		}
+		
 		sendNotification(new Object[]{power.getBallImage(),this.powerCounts.get(power.getPowerName())});
 	}
 	
@@ -95,5 +99,12 @@ public class PowerList extends Observable{
 			switchToNextPower();
 		
 		return power;
+	}
+
+	public void reset() {
+		this.powerList.clear();
+		this.powerCounts.clear();
+		this.currentPowerIndex = -1;
+		sendNotification(null);
 	}
 }
