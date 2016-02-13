@@ -1,7 +1,5 @@
 package model;
 
-
-
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -46,7 +44,7 @@ public class Player extends Observable{
 		this.score = 0;
 		this.lifes = 1;
 		this.isInvincible = false;
-		this.powerList.clear();
+		this.powerList.reset();
 	}
 	
 	public int getScore(){
