@@ -1,4 +1,4 @@
-package ihm;
+package ihm.game;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -37,10 +37,6 @@ public class ScorePanel extends JPanel implements Observer{
 		add(lifeLabel);
 		add(scoreLabel);
 		add(replayButton);
-	}
-	
-	public void addReplayAction(ActionListener al){
-		this.replayButton.addActionListener(al);
 	}
 	
 	public void stopGame(){

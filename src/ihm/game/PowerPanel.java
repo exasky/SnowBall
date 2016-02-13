@@ -1,4 +1,4 @@
-package ihm;
+package ihm.game;
 
 import java.awt.Color;
 import java.awt.Component;
@@ -14,8 +14,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import controller.PowerController;
 import model.powers.Power;
+import controller.PowerController;
 
 public class PowerPanel extends JPanel implements Observer{
 
@@ -28,21 +28,21 @@ public class PowerPanel extends JPanel implements Observer{
 		powerLabels = new HashMap<BufferedImage, JLabel>();
 		initializePowerLabels();
 	}
-	
-	private void initializePowerLabels(){
+
+	private void initializePowerLabels() {
 		JLabel currentLabel;
 		powerLabels.clear();
-		for (BufferedImage bufferedImage : PowerController.getPowerImages()) {
+		for (BufferedImage bufferedImage : PowerController.getPoweredImages()) {
 			currentLabel = new JLabel(new ImageIcon(bufferedImage));
 			currentLabel.setText("0");
 			add(currentLabel);
 			powerLabels.put(bufferedImage, currentLabel);
 		}
 	}
-	
+
 	private void resetPowerLabels() {
 		for (Component component : getComponents()) {
-			if (component instanceof JLabel){
+			if (component instanceof JLabel) {
 				((JLabel) component).setText("0");
 				((JLabel) component).setBorder(BorderFactory.createEmptyBorder());
 			}
@@ -54,7 +54,7 @@ public class PowerPanel extends JPanel implements Observer{
 		if (arg == null) {
 			resetPowerLabels();
 			this.currentLabel = null;
-		} else if (arg instanceof Object[]){
+		} else if (arg instanceof Object[]) {
 			Object[] args = (Object[])arg;
 			if (args[0] instanceof BufferedImage && args[1] instanceof Integer){
 				if (currentLabel == null) {
@@ -63,12 +63,11 @@ public class PowerPanel extends JPanel implements Observer{
 				}
 				powerLabels.get(args[0]).setText(((Integer)args[1]).toString());
 			}
-		} else if (arg instanceof Power){
+		} else if (arg instanceof Power) {
 			currentLabel.setBorder(BorderFactory.createEmptyBorder());
 			currentLabel = powerLabels.get(((Power)arg).getBallImage());
 			currentLabel.setBorder(new LineBorder(Color.black));
 		}
-		
-	}
 
+	}
 }

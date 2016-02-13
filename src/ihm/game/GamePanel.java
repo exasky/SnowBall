@@ -1,4 +1,5 @@
-package ihm;
+package ihm.game;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -12,23 +13,24 @@ import javax.swing.JPanel;
 
 import model.ball.SnowBall;
 import model.powers.Power;
+import model.powers.impl.OneShotPower;
 import controller.GameController;
 import controller.PowerController;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
-	public GamePanel(){
+	public GamePanel() {
 		setLayout(new BorderLayout());
 		setBackground(Color.BLACK);
-		
+
 		addMouseMotionListener(new MouseMotionAdapter() {
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				GameController.setMousePosition(e.getPoint());
 			}
 		});
-		
+
 		addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseExited(MouseEvent e) {
@@ -36,32 +38,41 @@ public class GamePanel extends JPanel{
 			}
 			
 			@Override
+			public void mouseEntered(MouseEvent e) {
+				if (!GameController.isGameEnded())
+					GameController.startGame();
+			}
+
+			@Override
 			public void mouseClicked(MouseEvent e) {
 				Power currentPower = GameController.getPlayer().getPowerList().popCurrentPower();
 				if (currentPower != null) {
 					currentPower.onClickAction();
 				}
-				
 			}
 		});
-		
+
 		addMouseWheelListener(new MouseWheelListener() {
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {
 				PowerController.switchPower(e.getWheelRotation());
 			}
 		});
-		
+
 		GameController.createGame(this);
 		setVisible(true);
 	}
-	
+
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		
-		for (SnowBall ball : GameController.getSnowBallList()){		
+
+		for (SnowBall ball : GameController.getSnowBallList()) {
 			g.drawImage(ball.ballPower.getBallImage(), ball.x, ball.y, this);
+		}
+
+		for (OneShotPower power : GameController.getFiredShots()) {
+			g.drawImage(OneShotPower.oneShotImage, power.from_x, power.y, this);
 		}
 	}
 }
