@@ -37,7 +37,7 @@ public class PowerList extends Observable {
 			this.powerNameList.add(power.getPowerID());
 		}
 
-		if (this.powerCounts.get(this.getCurrentPower().getPowerID()).size() == 0) {
+		if (this.getCurrentPower() == null || this.powerCounts.get(this.getCurrentPower().getPowerID()).size() == 0) {
 			switchToNextPower();
 		}
 
