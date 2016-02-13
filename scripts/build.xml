@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="SnowBall" default="jar" basedir="..">
+	
+	<property name="srcDir" value="src"/>
+	<property name="resourcesDir" value="resources"/>
+	<property name="buildDir" value="bin"/>
+	<property name="jarDir" value="out"/>
+	
+	<target name="clean">
+		<delete dir="${buildDir}"/>
+		<delete dir="${jarDir}"/>
+	</target>
+	
+	<target name="compil" depends="clean">
+		<mkdir dir="${buildDir}"/>
+		<javac 	includeantruntime="false"
+				srcdir="${srcDir}" 
+				destdir="${buildDir}" >
+		    <include name="**/*.java"/>
+		  </javac>
+	</target>
+	
+	<target name="jar" depends="compil">
+		<mkdir dir="${jarDir}"/>
+		<jar destfile="${jarDir}/SnowBall.jar" >
+			<fileset dir="${buildDir}" />
+			<fileset dir="${resourcesDir}" />
+		</jar>
+	</target>
+</project>
