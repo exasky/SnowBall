@@ -1,14 +1,19 @@
 package model.powers.impl;
 
-import java.awt.Color;
-
 import model.powers.Power;
+import model.powers.PowerID;
 import controller.GameController;
 
+/**
+ * Add an extra life to the player.
+ * 
+ * @author Simar Jérémy
+ *
+ */
 public class ExtraLifePower extends Power {
 
 	public ExtraLifePower() {
-		super("ExtraLife", Color.green);
+		super(PowerID.ExtraLife);
 	}
 
 	@Override

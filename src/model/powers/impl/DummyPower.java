@@ -1,18 +1,22 @@
 package model.powers.impl;
 
-import java.awt.Color;
-
 import model.powers.Power;
 
+/**
+ * Power that will be use only for tests.
+ * 
+ * @author Simar Jérémy
+ *
+ */
 public class DummyPower extends Power {
 
 	public DummyPower() {
-		super("DummyPower", Color.blue);
+		super(null);
 	}
 
 	@Override
 	public void onClickAction() {
-		System.out.println("wololo dummy wololo");
+		System.out.println("WOLOLOL DUMMY WOLOLOL");
 	}
 
 }
