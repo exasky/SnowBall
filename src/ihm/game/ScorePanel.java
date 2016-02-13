@@ -1,4 +1,5 @@
 package ihm.game;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -18,12 +19,13 @@ public class ScorePanel extends JPanel implements Observer{
 	private JLabel lifeLabel;
 	private JLabel scoreLabel;
 	private JButton replayButton;
-	
-	public ScorePanel(){
-		this.scoreLabel = new JLabel();
+	private JButton goBackToMenuButton;
+
+	public ScorePanel(ActionListener goToMenuAction){
 		this.lifeLabel = new JLabel();
-		this.replayButton = new JButton("Replay?");
-		
+		this.scoreLabel = new JLabel();
+				
+		this.replayButton = new JButton("Replay");
 		this.replayButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -32,22 +34,30 @@ public class ScorePanel extends JPanel implements Observer{
 			}
 		});
 		
-		resetGame();
+		this.goBackToMenuButton = new JButton("Menu");
+		this.goBackToMenuButton.addActionListener(goToMenuAction);
 		
 		add(lifeLabel);
 		add(scoreLabel);
 		add(replayButton);
+		add(goBackToMenuButton);
+
+		resetGame();
 	}
-	
+
 	public void stopGame(){
 		setText(this.scoreLabel.getText().replaceAll("Score", "Final score"));
+		add(this.replayButton);
+		add(this.goBackToMenuButton);
 		this.replayButton.setVisible(true);
+		this.goBackToMenuButton.setVisible(true);
 	}
 	
 	public void resetGame(){
 		setText("Score: 0");
 		this.lifeLabel.setText("Lifes: 1");
-		this.replayButton.setVisible(false);
+		remove(this.replayButton);
+		remove(this.goBackToMenuButton);
 	}
 
 	@Override
