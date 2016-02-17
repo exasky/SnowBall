@@ -34,7 +34,7 @@ public class SnowBallController {
 	 * @return A new snow ball.
 	 */
 	public SnowBall createBall() {
-		SnowBall snowBall = new SnowBall(myRand.nextInt(Main.X_BOUND), 0);
+		SnowBall snowBall = new SnowBall(myRand.nextInt(Main.MAIN_WIDTH), 0);
 		snowBall.ballPower = getRandPower();
 		return snowBall;
 	}

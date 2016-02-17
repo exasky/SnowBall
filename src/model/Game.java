@@ -65,6 +65,7 @@ public class Game extends Observable {
 						OneShotPower currentShotPower = oneShotIterator.next();
 						if (hasShotHitBall(currentShotPower, ball)) {
 							ballsIterator.remove();
+							GameController.addPoint();
 						}
 						if (currentShotPower.y + OneShotPower.oneShotImage.getHeight() < 1) {
 							oneShotIterator.remove();

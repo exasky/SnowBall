@@ -13,6 +13,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import launch.Main;
+
 public class MainMenuPanel extends JPanel {
 	private static final long serialVersionUID = 1L;
 
@@ -37,6 +39,8 @@ public class MainMenuPanel extends JPanel {
 		});
 
 		addElements();
+
+		setBounds(0, 0, Main.MAIN_WIDTH, Main.MAIN_HEIGHT);
 		setVisible(true);
 	}
 

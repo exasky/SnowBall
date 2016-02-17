@@ -2,6 +2,7 @@ package ihm.game;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
@@ -14,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
+import launch.Main;
 import model.powers.Power;
 import controller.PowerController;
 
@@ -27,6 +29,7 @@ public class PowerPanel extends JPanel implements Observer{
 	public PowerPanel() {
 		powerLabels = new HashMap<BufferedImage, JLabel>();
 		initializePowerLabels();
+		setPreferredSize(new Dimension(Main.MAIN_WIDTH, 25));
 	}
 
 	private void initializePowerLabels() {

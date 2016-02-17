@@ -1,5 +1,6 @@
 package ihm.game;
 
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -9,6 +10,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import launch.Main;
 import controller.GameController;
 
 
@@ -20,6 +22,9 @@ public class ScorePanel extends JPanel implements Observer{
 	private JLabel scoreLabel;
 	private JButton replayButton;
 	private JButton goBackToMenuButton;
+
+	private Dimension stopGameSize;
+	private Dimension runningGameSize;
 
 	public ScorePanel(ActionListener goToMenuAction){
 		this.lifeLabel = new JLabel();
@@ -37,6 +42,9 @@ public class ScorePanel extends JPanel implements Observer{
 		this.goBackToMenuButton = new JButton("Menu");
 		this.goBackToMenuButton.addActionListener(goToMenuAction);
 		
+		stopGameSize = new Dimension(Main.MAIN_WIDTH, 35);
+		runningGameSize = new Dimension(Main.MAIN_WIDTH, 25);
+
 		add(lifeLabel);
 		add(scoreLabel);
 		add(replayButton);
@@ -47,17 +55,17 @@ public class ScorePanel extends JPanel implements Observer{
 
 	public void stopGame(){
 		setText(this.scoreLabel.getText().replaceAll("Score", "Final score"));
-		add(this.replayButton);
-		add(this.goBackToMenuButton);
 		this.replayButton.setVisible(true);
 		this.goBackToMenuButton.setVisible(true);
+		setPreferredSize(this.stopGameSize);
 	}
 	
 	public void resetGame(){
 		setText("Score: 0");
 		this.lifeLabel.setText("Lifes: 1");
-		remove(this.replayButton);
-		remove(this.goBackToMenuButton);
+		this.replayButton.setVisible(false);
+		this.goBackToMenuButton.setVisible(false);
+		setPreferredSize(this.runningGameSize);
 	}
 
 	@Override

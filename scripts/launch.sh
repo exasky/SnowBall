@@ -8,14 +8,14 @@ usage() {
 	echo "====     Welcome !   ====="
 	echo "====                 ====="
 	echo "=========================="
-	echo "\nUse this launcher to compile and launch the SnowBall game\n"
+	echo -e "\nUse this launcher to compile and launch the SnowBall game\n"
 
 
 	echo "Usage: launch.sh [ -b <target> ] [ -l ]"
-	echo "\t-l: Launch the application."
-	echo "\t    Print an error if the project hasn't been build before."
-	echo "\t-b <target>: build the project with the specified ant target."
-	echo "\t\tAvailable targets: clean, compile, jar"
+	echo -e "\t-l: Launch the application."
+	echo -e "\t    Print an error if the project hasn't been build before."
+	echo -e "\t-b <target>: build the project with the specified ant target."
+	echo -e "\t\tAvailable targets: clean, compile, jar"
 }
 
 parseArgs() {

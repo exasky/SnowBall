@@ -11,7 +11,7 @@
 		<delete dir="${jarDir}"/>
 	</target>
 	
-	<target name="compil" depends="clean">
+	<target name="compile" depends="clean">
 		<mkdir dir="${buildDir}"/>
 		<javac 	includeantruntime="false"
 				srcdir="${srcDir}" 
@@ -20,7 +20,7 @@
 		  </javac>
 	</target>
 	
-	<target name="jar" depends="compil">
+	<target name="jar" depends="compile">
 		<mkdir dir="${jarDir}"/>
 		<jar destfile="${jarDir}/SnowBall.jar" >
 			<fileset dir="${buildDir}" />

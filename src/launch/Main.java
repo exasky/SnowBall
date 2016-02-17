@@ -1,41 +1,31 @@
 package launch;
 
-import java.awt.BorderLayout;
+import ihm.game.MainGamePanel;
+import ihm.menu.MainMenuPanel;
+
 import java.awt.Rectangle;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 
-import controller.GameController;
-import ihm.game.GamePanel;
-import ihm.game.PowerPanel;
-import ihm.game.ScorePanel;
-import ihm.menu.MainMenuPanel;
-
 public class Main extends JFrame {
 
 	private static final long serialVersionUID = 1L;
-	public static final int X_BOUND = 350;
-	public static final int Y_BOUND = 300;
-
-	private GamePanel gamePanel;
-	private PowerPanel powerPanel;
-	private ScorePanel scorePanel;
+	public static final int MAIN_WIDTH = 350;
+	public static final int MAIN_HEIGHT = 300;
 
 	private MainMenuPanel mainMenuPanel;
+	private MainGamePanel mainGamePanel;
 
 	public Main() {
-
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Rectangle bounds = getBounds();
-		setBounds(bounds.x, bounds.y, X_BOUND, Y_BOUND);
+		setBounds(bounds.x, bounds.y, MAIN_WIDTH, MAIN_HEIGHT);
 
 		initiateMenu();
 		initiateGamePanels();
 
-		mainMenuPanel.setBounds(0, 0, X_BOUND, Y_BOUND);
-		mainMenuPanel.setVisible(true);
 		setVisible(true);
 	}
 
@@ -43,42 +33,26 @@ public class Main extends JFrame {
 		ActionListener startGameAction = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.this.gamePanel.setVisible(true);
-				Main.this.scorePanel.setVisible(true);
-				Main.this.powerPanel.setVisible(true);
+				Main.this.mainGamePanel.setVisible(true);
 				Main.this.mainMenuPanel.setVisible(false);
 			}
 		};
 		this.mainMenuPanel = new MainMenuPanel(startGameAction, this);
+		this.mainMenuPanel.setVisible(true);
 		add(this.mainMenuPanel);
 	}
 
 	private void initiateGamePanels() {
-		this.powerPanel = new PowerPanel();
-		add(this.powerPanel, BorderLayout.NORTH);
-
-		this.gamePanel = new GamePanel();
-		add(this.gamePanel, BorderLayout.CENTER);
-
 		ActionListener goToMenuAction = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				Main.this.gamePanel.setVisible(false);
-				Main.this.scorePanel.setVisible(false);
-				Main.this.powerPanel.setVisible(false);
+				Main.this.mainGamePanel.setVisible(false);
 				Main.this.mainMenuPanel.setVisible(true);
 			}
 		};
-		this.scorePanel = new ScorePanel(goToMenuAction);
-		add(this.scorePanel, BorderLayout.SOUTH);
-
-		GameController.addObserver(this.powerPanel);
-		GameController.addObserver(this.scorePanel);
-		GameController.resetGame();
-
-		this.gamePanel.setVisible(false);
-		this.scorePanel.setVisible(false);
-		this.powerPanel.setVisible(false);
+		this.mainGamePanel = new MainGamePanel(goToMenuAction);
+		this.mainGamePanel.setVisible(false);
+		add(this.mainGamePanel);
 	}
 
 	public static void main(String[] args) {
